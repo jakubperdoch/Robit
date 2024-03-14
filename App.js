@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Routes from './src/routes/routes';
+import { loadFonts } from './src/constants/constants';
+import * as SplashScreen from 'expo-splash-screen';
+import { useState, useEffect, useCallback } from 'react';
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+ const [appIsReady, setAppIsReady] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+ useEffect(() => {
+  async function prepare() {
+   try {
+    await loadFonts();
+   } catch (e) {
+    console.warn(e);
+   } finally {
+    setAppIsReady(true);
+   }
+  }
+
+  prepare();
+ }, []);
+
+ const onLayoutRootView = useCallback(async () => {
+  if (appIsReady) {
+   setTimeout(() => {
+    SplashScreen.hideAsync();
+   }, 1000);
+  }
+ }, [appIsReady]);
+
+ if (!appIsReady) {
+  return null;
+ }
+
+ return (
+  <SafeAreaProvider onLayout={onLayoutRootView}>
+   <Routes></Routes>
+  </SafeAreaProvider>
+ );
+}
