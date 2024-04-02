@@ -3,6 +3,9 @@ import Routes from './src/routes/routes';
 import { loadFonts } from './src/constants/constants';
 import * as SplashScreen from 'expo-splash-screen';
 import { useState, useEffect, useCallback } from 'react';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -36,7 +39,9 @@ export default function App() {
 
  return (
   <SafeAreaProvider onLayout={onLayoutRootView}>
-   <Routes></Routes>
+   <GluestackUIProvider config={config}>
+    <Routes></Routes>
+   </GluestackUIProvider>
   </SafeAreaProvider>
  );
 }

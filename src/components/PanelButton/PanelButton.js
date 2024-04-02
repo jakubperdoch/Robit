@@ -10,7 +10,7 @@ function PanelButton(props) {
   if (isHolding) {
    intervalId = setInterval(() => {
     console.log('1');
-   }, 10);
+   }, 50);
   } else {
    clearInterval(intervalId);
   }
