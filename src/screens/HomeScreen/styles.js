@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   marginTop: 5,
  },
 
- home_header: {
+ home_screen: {
   alignItems: 'center',
   gap: 20,
   height: '100%',
@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
   alignItems: 'flex-end',
  },
  home_armImage: {
-  width: '53%',
-  marginStart: 15,
-  height: '65%',
+  marginStart: 25,
  },
 });
 

@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 
 function Routes() {
  const Stack = createNativeStackNavigator();
@@ -23,6 +24,7 @@ function Routes() {
     screenOptions={{ headerShown: false }}
    >
     <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Screen name="Settings" component={SettingsScreen} />
    </Stack.Navigator>
   </NavigationContainer>
  );

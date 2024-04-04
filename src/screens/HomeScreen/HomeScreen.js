@@ -4,8 +4,10 @@ import styles from './styles';
 import PanelButton from '../../components/PanelButton/PanelButton';
 import { useState } from 'react';
 import GripSlider from '../../components/GripSlider/GripSlider';
+import RoboticArm from '../../assets/images/robotic-arm.svg';
+import Footer from '../../components/Footer/Footer';
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
  const [gripValue, setGripValue] = useState(0);
 
  const changeGripValue = (newValue) => {
@@ -56,7 +58,7 @@ function HomeScreen() {
  ];
  return (
   <SafeAreaView>
-   <View style={styles.home_header}>
+   <View style={styles.home_screen}>
     <Text style={styles.home_title}>BOBO</Text>
 
     <Image
@@ -65,7 +67,7 @@ function HomeScreen() {
     />
 
     <View style={styles.controlSection}>
-     <Image style={styles.home_armImage} source={require('../../assets/images/robotic-arm.png')} />
+     <RoboticArm width={220} height={320} style={styles.home_armImage} />
      <View style={styles.home_aside}>
       {controllersArray.map((section, index) => (
        <View key={`section-${index}`} style={styles.home_sectionContainer}>
@@ -83,6 +85,7 @@ function HomeScreen() {
       ))}
      </View>
     </View>
+    <Footer navigation={navigation} />
    </View>
   </SafeAreaView>
  );
