@@ -57,7 +57,7 @@ function HomeScreen({ navigation }) {
   },
  ];
  return (
-  <SafeAreaView>
+  <SafeAreaView style={{ flex: 1 }}>
    <View style={styles.home_screen}>
     <Text style={styles.home_title}>BOBO</Text>
 
@@ -67,7 +67,7 @@ function HomeScreen({ navigation }) {
     />
 
     <View style={styles.controlSection}>
-     <RoboticArm width={220} height={320} style={styles.home_armImage} />
+     <RoboticArm width={220} height={300} style={styles.home_armImage} />
      <View style={styles.home_aside}>
       {controllersArray.map((section, index) => (
        <View key={`section-${index}`} style={styles.home_sectionContainer}>
@@ -85,8 +85,8 @@ function HomeScreen({ navigation }) {
       ))}
      </View>
     </View>
-    <Footer navigation={navigation} />
    </View>
+   <Footer navigation={navigation} />
   </SafeAreaView>
  );
 }

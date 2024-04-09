@@ -5,13 +5,12 @@ const styles = StyleSheet.create({
   fontFamily: 'Tech',
   fontSize: 42,
   color: '#00A6FB',
-  marginTop: 5,
  },
 
  home_screen: {
   alignItems: 'center',
-  gap: 20,
-  height: '100%',
+  gap: 12,
+  flex: 1,
  },
  home_camera: {
   width: '90%',
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
  },
  home_sectionContainer: {
   alignItems: 'center',
-  gap: 10,
+  gap: 12,
  },
  home_aside: {
   alignItems: 'flex-end',
