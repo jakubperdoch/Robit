@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
+import AboutUsScreen from '../screens/AboutUsScreen/AboutUsScreen';
+
 function Routes() {
  const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,7 @@ function Routes() {
     <Stack.Screen name="SplashScreen" component={SplashScreen} />
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Settings" component={SettingsScreen} />
+    <Stack.Screen name="Settings_AboutUs" component={AboutUsScreen} />
    </Stack.Navigator>
   </NavigationContainer>
  );

@@ -13,7 +13,11 @@ function Footer({ navigation }) {
     <HomeIcon
      width={25}
      height={25}
-     style={route.name == 'Home' ? { color: '#00A6FB' } : { color: '#67686D' }}
+     style={
+      route.name.startsWith('Home')
+       ? { color: '#00A6FB' }
+       : { color: '#67686D' }
+     }
     />
    </TouchableOpacity>
    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
@@ -21,7 +25,9 @@ function Footer({ navigation }) {
      width={30}
      height={30}
      style={
-      route.name == 'Settings' ? { color: '#00A6FB' } : { color: '#67686D' }
+      route.name.startsWith('Settings')
+       ? { color: '#00A6FB' }
+       : { color: '#67686D' }
      }
     />
    </TouchableOpacity>

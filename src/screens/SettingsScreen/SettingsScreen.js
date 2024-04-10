@@ -25,11 +25,11 @@ function SettingsScreen({ navigation }) {
  const accountSettings = [
   {
    title: 'Edit Profile',
-   destination: 'editProfile',
+   destination: 'EditProfile',
   },
   {
    title: 'Change Password',
-   destination: 'changePassword',
+   destination: 'ChangePassword',
   },
   {
    title: 'Dark Mode',
@@ -40,15 +40,15 @@ function SettingsScreen({ navigation }) {
  const additionalSettings = [
   {
    title: 'About Us',
-   destination: 'About Us',
+   destination: 'Settings_AboutUs',
   },
   {
    title: 'Privacy Policy',
-   destination: 'privacyPolicy',
+   destination: 'Settings_PrivacyPolicy',
   },
   {
    title: 'Terms and Conditions',
-   destination: 'termsConditions',
+   destination: 'Settings_TermsConditions',
   },
  ];
 
@@ -88,7 +88,9 @@ function SettingsScreen({ navigation }) {
      {additionalSettings.map((section, index) => (
       <View key={`section-${index}`} style={styles.accountContainer_section}>
        <Text style={styles.accountContainer_sectionTitle}>{section.title}</Text>
-       <TouchableOpacity>
+       <TouchableOpacity
+        onPress={() => navigation.navigate(section.destination)}
+       >
         <ArrowIcon_Right />
        </TouchableOpacity>
       </View>
