@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
-
 function Routes() {
  const Stack = createNativeStackNavigator();
 
@@ -20,9 +20,10 @@ function Routes() {
  return (
   <NavigationContainer theme={Reset}>
    <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="SplashScreen"
     screenOptions={{ headerShown: false }}
    >
+    <Stack.Screen name="SplashScreen" component={SplashScreen} />
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Settings" component={SettingsScreen} />
    </Stack.Navigator>

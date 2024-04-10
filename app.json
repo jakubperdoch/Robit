@@ -5,10 +5,6 @@
   "version": "1.0.0",
   "orientation": "portrait",
   "userInterfaceStyle": "dark",
-  "splash": {
-   "image": "./src/assets/images/SplashScreen/icon.png",
-   "backgroundColor": "#051923"
-  },
   "assetBundlePatterns": ["**/*"],
   "ios": {
    "supportsTablet": true

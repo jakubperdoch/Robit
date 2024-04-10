@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   borderColor: '#cacacaaf',
   borderBottomWidth: 1,
   paddingStart: 30,
-  paddingBottom: 10,
+  paddingBottom: 15,
  },
  header_robotName: {
   color: '#FFF',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
  positionContainer_title: {
   color: '#FFF',
   fontFamily: 'Tech',
-  fontSize: 18,
+  fontSize: 20,
  },
  accountContainer: {
   borderColor: '#cacacaaf',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
  accountContainer_title: {
   color: '#ADADAD',
   fontFamily: 'Tech',
-  fontSize: 21,
+  fontSize: 20,
  },
  accountContainer_section: {
   width: '100%',
