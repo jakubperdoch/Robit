@@ -4,6 +4,8 @@ import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 import AboutUsScreen from '../screens/AboutUsScreen/AboutUsScreen';
+import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
+import TermsScreen from '../screens/TermsScreen/TermsScreen';
 
 function Routes() {
  const Stack = createNativeStackNavigator();
@@ -29,6 +31,8 @@ function Routes() {
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Settings" component={SettingsScreen} />
     <Stack.Screen name="Settings_AboutUs" component={AboutUsScreen} />
+    <Stack.Screen name="Settings_PrivacyPolicy" component={PrivacyScreen} />
+    <Stack.Screen name="Settings_TermsConditions" component={TermsScreen} />
    </Stack.Navigator>
   </NavigationContainer>
  );
