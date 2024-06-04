@@ -9,31 +9,20 @@ import RoboticArmIcon from '../../assets/images/roboticArmIcon.svg';
 import PositionIcon from '../../assets/images/positionIcon.svg';
 import ArrowIcon_Right from '../../assets/images/arrowIcon-right.svg';
 import DarkModeSwicth from '../../components/DarkModeSwitch/DarkModeSwicth';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function SettingsScreen({ navigation }) {
  const insets = useSafeAreaInsets();
  const [themeValue, changeThemeValue] = useState(false);
 
- const changeTheme = () => {
-  changeThemeValue(!themeValue);
+ const handleLogOut = () => {
+  navigation.navigate('LoginScreen');
  };
- useEffect(() => {
-  console.log('Theme Changed:', themeValue);
- }, [themeValue]);
 
  const accountSettings = [
   {
-   title: 'Edit Profile',
-   destination: 'EditProfile',
-  },
-  {
    title: 'Change Password',
    destination: 'ChangePassword',
-  },
-  {
-   title: 'Dark Mode',
-   type: 'switchTheme',
   },
  ];
 
@@ -72,13 +61,9 @@ function SettingsScreen({ navigation }) {
      {accountSettings.map((section, index) => (
       <View key={`section-${index}`} style={styles.accountContainer_section}>
        <Text style={styles.accountContainer_sectionTitle}>{section.title}</Text>
-       {section.type === 'switchTheme' ? (
-        <DarkModeSwicth changeTheme={changeTheme} themeValue={themeValue} />
-       ) : (
-        <TouchableOpacity>
-         <ArrowIcon_Right />
-        </TouchableOpacity>
-       )}
+       <TouchableOpacity>
+        <ArrowIcon_Right />
+       </TouchableOpacity>
       </View>
      ))}
     </View>
@@ -96,6 +81,9 @@ function SettingsScreen({ navigation }) {
       </View>
      ))}
     </View>
+    <TouchableOpacity onPress={() => handleLogOut()}>
+     <Text style={styles.logOut_link}>Log Out</Text>
+    </TouchableOpacity>
    </View>
    <Footer navigation={navigation} style={{ paddingBottom: insets.bottom }} />
   </SafeAreaView>

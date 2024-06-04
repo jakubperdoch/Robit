@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const styles= (theme)= StyleSheet.create({
  home_title: {
   fontFamily: 'Tech',
   fontSize: 42,

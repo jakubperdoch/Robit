@@ -38,7 +38,7 @@ function SplashScreen({ navigation }) {
     style={styles.splashScreen_animation}
     source={require('../../assets/images/robotArm-animated.gif')}
    />
-   <Text style={styles.splashScreen_title}>Robit</Text>
+   <Text style={styles.splashScreen_title}>Bobo</Text>
   </View>
  );
 }

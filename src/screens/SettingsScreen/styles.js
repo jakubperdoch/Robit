@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
  screen: {
   height: '100%',
   alignItems: 'center',
-  gap: 30,
+  gap: 28,
   paddingTop: 30,
  },
  header: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
  accountContainer: {
   borderColor: '#cacacaaf',
   borderBottomWidth: 1,
-  gap: 25,
+  gap: 28,
   alignItems: 'flex-start',
   width: '100%',
   paddingBottom: 30,
@@ -63,11 +63,16 @@ const styles = StyleSheet.create({
   fontSize: 18,
  },
  additionalContainer: {
-  gap: 25,
+  gap: 28,
   alignItems: 'flex-start',
   width: '100%',
   paddingBottom: 30,
   paddingHorizontal: 30,
+ },
+ logOut_link: {
+  color: '#ada4a56e',
+  fontFamily: 'Tech',
+  fontSize: 18,
  },
 });
 

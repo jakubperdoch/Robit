@@ -7,6 +7,7 @@ import AboutUsScreen from '../screens/AboutUsScreen/AboutUsScreen';
 import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
 import TermsScreen from '../screens/TermsScreen/TermsScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
 
 function Routes() {
  const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ function Routes() {
    >
     <Stack.Screen name="SplashScreen" component={SplashScreen} />
     <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+    <Stack.Screen name="LoginScreen" component={LoginScreen} />
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Settings" component={SettingsScreen} />
     <Stack.Screen name="Settings_AboutUs" component={AboutUsScreen} />

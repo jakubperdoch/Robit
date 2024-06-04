@@ -6,7 +6,7 @@ import { useState } from 'react';
 import TextInput from '../../components/TextInput/TextInput';
 import FormButton from '../../components/FormButton/FormButton';
 
-function RegisterScreen({ navigation }) {
+function LoginScreen({ navigation }) {
  const [showPassword, setShowPassword] = useState(false);
  const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
 
@@ -26,7 +26,7 @@ function RegisterScreen({ navigation }) {
     <View style={styles.RegisterScreen}>
      <View style={styles.RegisterScreen_header}>
       <Text style={styles.RegisterScreen_subTitle}>Hey there,</Text>
-      <Text style={styles.RegisterScreen_title}>Welcome</Text>
+      <Text style={styles.RegisterScreen_title}>Welcome Back</Text>
      </View>
      <View style={styles.RegisterScreen_inputsContainer}>
       <TextInput type={'email'} iconLeft={Mail} placeholder={'Email'} />
@@ -40,27 +40,21 @@ function RegisterScreen({ navigation }) {
        placeholder={'Password'}
        showHandler={showPassword}
       />
-      <TextInput
-       type={'password'}
-       iconLeft={LockKeyhole}
-       IconRightShow={Eye}
-       IconRightHide={EyeOff}
-       onClicHandler={handleState.bind(this, setShowRepeatedPassword)}
-       showPassword={showRepeatedPassword}
-       placeholder={'Repeat Password'}
-      />
-      <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-       <Text style={styles.RegisterScreen_link}>Already Sign-up?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+       <Text style={styles.RegisterScreen_link}>Don't have an account?</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+       <Text style={styles.RegisterScreen_link}>Forgot your password?</Text>
       </TouchableOpacity>
      </View>
     </View>
     <FormButton
-     onClickHandler={onClickHandler.bind(this, 'Register')}
-     title={'Register'}
+     onClickHandler={onClickHandler.bind(this, 'Login')}
+     title={'Login'}
     />
    </View>
   </SafeAreaView>
  );
 }
 
-export default RegisterScreen;
+export default LoginScreen;

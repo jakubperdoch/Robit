@@ -1,6 +1,7 @@
 import { Image, TouchableOpacity, Text, View } from 'react-native';
 import styles from './styles';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function PanelButton(props) {
  const [isHolding, setIsHolding] = useState(false);
@@ -9,8 +10,15 @@ function PanelButton(props) {
   let intervalId;
   if (isHolding) {
    intervalId = setInterval(() => {
-    console.log('1');
-   }, 50);
+    axios
+     .post('http://192.168.50.201:3000/home', {
+      controller: props.controller,
+      value: 1,
+     })
+     .catch((error) => {
+      console.error('There was an error!', error);
+     });
+   }, 500);
   } else {
    clearInterval(intervalId);
   }
@@ -28,9 +36,6 @@ function PanelButton(props) {
   setIsHolding(false);
  };
 
- function longPressHandler() {
-  console.log('1');
- }
  return (
   <TouchableOpacity
    onPressIn={handlePressIn}

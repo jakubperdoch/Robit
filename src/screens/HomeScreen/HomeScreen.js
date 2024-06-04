@@ -1,6 +1,7 @@
 import { View, Text, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
+
 import PanelButton from '../../components/PanelButton/PanelButton';
 import { useState } from 'react';
 import GripSlider from '../../components/GripSlider/GripSlider';
@@ -53,7 +54,7 @@ function HomeScreen({ navigation }) {
     require('../../assets/images/arrow-left.png'),
     require('../../assets/images/arrow-right.png'),
    ],
-   controller: 'Waist',
+   controller: 'waist',
   },
  ];
  return (
@@ -77,7 +78,11 @@ function HomeScreen({ navigation }) {
           <GripSlider gripValue={gripValue} changeGripValue={changeGripValue} />
          ) : (
           section.images.map((controller, index) => (
-           <PanelButton key={index} icon={controller} />
+           <PanelButton
+            key={index}
+            icon={controller}
+            controller={section.controller}
+           />
           ))
          )}
         </View>
