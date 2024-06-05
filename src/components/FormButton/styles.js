@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
  FormButton: {
-  width: '80%',
+  marginTop: 'auto',
+  width: '90%',
   height: 55,
   backgroundColor: '#003554',
   flexDirection: 'row',

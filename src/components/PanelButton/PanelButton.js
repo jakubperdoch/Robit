@@ -11,9 +11,9 @@ function PanelButton(props) {
   if (isHolding) {
    intervalId = setInterval(() => {
     axios
-     .post('http://192.168.50.201:3000/home', {
+     .post('http://172.20.10.5:3000/home', {
       controller: props.controller,
-      value: 1,
+      value: props.buttonValue,
      })
      .catch((error) => {
       console.error('There was an error!', error);
@@ -26,7 +26,7 @@ function PanelButton(props) {
   return () => {
    clearInterval(intervalId);
   };
- }, [isHolding]);
+ }, [isHolding, props.buttonValue]);
 
  const handlePressIn = () => {
   setIsHolding(true);

@@ -10,7 +10,7 @@ app.post('/home', (req, res) => {
  res.json({ message: `${controller} ${value}` });
 });
 
-app.get('/', (req, res) => {
+app.get('/nieco', (req, res) => {
  res.send('Hello World!');
 });
 

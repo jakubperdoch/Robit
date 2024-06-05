@@ -1,14 +1,12 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import { LockKeyhole, Mail, Eye, EyeOff } from 'lucide-react-native';
 import { useState } from 'react';
 import TextInput from '../../components/TextInput/TextInput';
-import FormButton from '../../components/FormButton/FormButton';
+import ValidationLayout from '../../layouts/ValidationLayout/index';
 
 function LoginScreen({ navigation }) {
  const [showPassword, setShowPassword] = useState(false);
- const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
 
  const handleState = (showHandler) => {
   showHandler((showState) => {
@@ -16,18 +14,15 @@ function LoginScreen({ navigation }) {
   });
  };
 
- const onClickHandler = (state) => {
-  navigation.navigate('Home');
- };
-
  return (
-  <SafeAreaView>
+  <ValidationLayout
+   navigation={navigation}
+   buttonText={'Login'}
+   subTitle={'Hey there,'}
+   title={'Welcome Back'}
+  >
    <View style={styles.RegisterScreen_container}>
     <View style={styles.RegisterScreen}>
-     <View style={styles.RegisterScreen_header}>
-      <Text style={styles.RegisterScreen_subTitle}>Hey there,</Text>
-      <Text style={styles.RegisterScreen_title}>Welcome Back</Text>
-     </View>
      <View style={styles.RegisterScreen_inputsContainer}>
       <TextInput type={'email'} iconLeft={Mail} placeholder={'Email'} />
       <TextInput
@@ -48,12 +43,8 @@ function LoginScreen({ navigation }) {
       </TouchableOpacity>
      </View>
     </View>
-    <FormButton
-     onClickHandler={onClickHandler.bind(this, 'Login')}
-     title={'Login'}
-    />
    </View>
-  </SafeAreaView>
+  </ValidationLayout>
  );
 }
 

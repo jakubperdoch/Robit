@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
  RegisterScreen: {
+  height: 'auto',
   alignItems: 'center',
   paddingHorizontal: 20,
   paddingVertical: 60,
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
   fontSize: 16,
  },
  RegisterScreen_container: {
-  height: '100%',
   alignItems: 'center',
   justifyContent: 'space-between',
  },

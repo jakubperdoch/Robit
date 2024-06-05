@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
-
+import axios from 'axios';
 import PanelButton from '../../components/PanelButton/PanelButton';
 import { useState } from 'react';
 import GripSlider from '../../components/GripSlider/GripSlider';
@@ -13,6 +13,10 @@ function HomeScreen({ navigation }) {
 
  const changeGripValue = (newValue) => {
   setGripValue(newValue);
+  axios.post('http://172.20.10.5:3000/home', {
+   controller: 'grip',
+   value: gripValue,
+  });
  };
 
  const controllersArray = [
@@ -82,6 +86,7 @@ function HomeScreen({ navigation }) {
             key={index}
             icon={controller}
             controller={section.controller}
+            buttonValue={index === 0 ? -1 : 1}
            />
           ))
          )}

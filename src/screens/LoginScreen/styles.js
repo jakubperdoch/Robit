@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   fontSize: 16,
  },
  RegisterScreen_container: {
-  height: '100%',
   alignItems: 'center',
   justifyContent: 'space-between',
  },
