@@ -2,6 +2,8 @@ import { Image, TouchableOpacity, Text, View } from 'react-native';
 import styles from './styles';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import RotateLeft from '../../assets/images/rotate-left.svg';
+import RotateRight from '../../assets/images/rotate-right.svg';
 
 function PanelButton(props) {
  const [isHolding, setIsHolding] = useState(false);
@@ -19,14 +21,12 @@ function PanelButton(props) {
       console.error('There was an error!', error);
      });
    }, 500);
-  } else {
-   clearInterval(intervalId);
   }
 
   return () => {
    clearInterval(intervalId);
   };
- }, [isHolding, props.buttonValue]);
+ }, [isHolding, props.controller, props.buttonValue]);
 
  const handlePressIn = () => {
   setIsHolding(true);
@@ -42,7 +42,11 @@ function PanelButton(props) {
    onPressOut={handlePressOut}
    style={styles.panelButton}
   >
-   <Image style={styles.panelButton_icon} source={props.icon} />
+   {props.controller === 'wrist' || props.controller === 'waist' ? (
+    <>{props.buttonValue === 1 ? <RotateRight /> : <RotateLeft />}</>
+   ) : (
+    <Image style={styles.panelButton_icon} source={props.icon} />
+   )}
   </TouchableOpacity>
  );
 }
