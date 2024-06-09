@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   justifyContent: 'center',
   alignItems: 'center',
   gap: 20,
-  borderRadius: 30,
+  borderRadius: 16,
  },
  FormButton_title: {
   fontFamily: 'Tech',

@@ -1,6 +1,6 @@
 import Footer from '../../components/Footer/Footer';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FormButton from '../../components/FormButton/FormButton';
+import ValidationButton from '../../components/ValidationButton/ValidationButton';
 import { Text, View } from 'react-native';
 import styles from './styles';
 
@@ -24,7 +24,7 @@ const ValidationLayout = ({
     </View>
     {children}
 
-    <FormButton
+    <ValidationButton
      onClickHandler={onClickHandler.bind(this, buttonText)}
      title={buttonText}
     />

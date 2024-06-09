@@ -8,7 +8,6 @@ import styles from './styles';
 import RoboticArmIcon from '../../assets/images/roboticArmIcon.svg';
 import PositionIcon from '../../assets/images/positionIcon.svg';
 import ArrowIcon_Right from '../../assets/images/arrowIcon-right.svg';
-import DarkModeSwicth from '../../components/DarkModeSwitch/DarkModeSwicth';
 import { useState } from 'react';
 
 function SettingsScreen({ navigation }) {

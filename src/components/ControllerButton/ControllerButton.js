@@ -5,7 +5,7 @@ import axios from 'axios';
 import RotateLeft from '../../assets/images/rotate-left.svg';
 import RotateRight from '../../assets/images/rotate-right.svg';
 
-function PanelButton(props) {
+function ControllerButton(props) {
  const [isHolding, setIsHolding] = useState(false);
 
  useEffect(() => {
@@ -51,4 +51,4 @@ function PanelButton(props) {
  );
 }
 
-export default PanelButton;
+export default ControllerButton;

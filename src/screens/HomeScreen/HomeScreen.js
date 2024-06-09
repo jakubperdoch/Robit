@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 import axios from 'axios';
-import PanelButton from '../../components/PanelButton/PanelButton';
+import ControllerButton from '../../components/ControllerButton/ControllerButton';
 import { useState } from 'react';
 import GripSlider from '../../components/GripSlider/GripSlider';
 import RoboticArm from '../../assets/images/robotic-arm.svg';
