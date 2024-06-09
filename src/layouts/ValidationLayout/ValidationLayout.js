@@ -1,4 +1,3 @@
-import Footer from '../../components/Footer/Footer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ValidationButton from '../../components/ValidationButton/ValidationButton';
 import { Text, View } from 'react-native';
@@ -11,8 +10,8 @@ const ValidationLayout = ({
  title,
  subTitle,
 }) => {
- const onClickHandler = (state) => {
-  navigation.navigate('Home');
+ const onClickHandler = (location) => {
+  navigation.navigate(location);
  };
 
  return (
@@ -25,7 +24,7 @@ const ValidationLayout = ({
     {children}
 
     <ValidationButton
-     onClickHandler={onClickHandler.bind(this, buttonText)}
+     onClickHandler={onClickHandler.bind(this, 'Home')}
      title={buttonText}
     />
    </View>

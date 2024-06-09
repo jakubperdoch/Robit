@@ -82,7 +82,7 @@ function HomeScreen({ navigation }) {
           <GripSlider gripValue={gripValue} changeGripValue={changeGripValue} />
          ) : (
           section.images.map((controller, index) => (
-           <PanelButton
+           <ControllerButton
             key={index}
             icon={controller}
             controller={section.controller}

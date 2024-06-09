@@ -23,7 +23,7 @@ function SplashScreen({ navigation }) {
  useEffect(() => {
   if (appIsReady) {
    setTimeout(() => {
-    navigation.navigate('RegisterScreen');
+    navigation.navigate('Register');
    }, 2500);
   }
  }, [appIsReady]);

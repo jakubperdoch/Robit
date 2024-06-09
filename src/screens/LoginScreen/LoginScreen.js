@@ -3,7 +3,7 @@ import styles from './styles';
 import { LockKeyhole, Mail, Eye, EyeOff } from 'lucide-react-native';
 import { useState } from 'react';
 import TextInput from '../../components/TextInput/TextInput';
-import ValidationLayout from '../../layouts/ValidationLayout/index';
+import ValidationLayout from '../../layouts/ValidationLayout/ValidationLayout';
 
 function LoginScreen({ navigation }) {
  const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +35,7 @@ function LoginScreen({ navigation }) {
        placeholder={'Password'}
        showHandler={showPassword}
       />
-      <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
        <Text style={styles.RegisterScreen_link}>Don't have an account?</Text>
       </TouchableOpacity>
       <TouchableOpacity>

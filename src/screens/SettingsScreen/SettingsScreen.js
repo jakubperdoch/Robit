@@ -15,13 +15,13 @@ function SettingsScreen({ navigation }) {
  const [themeValue, changeThemeValue] = useState(false);
 
  const handleLogOut = () => {
-  navigation.navigate('LoginScreen');
+  navigation.navigate('Login');
  };
 
  const accountSettings = [
   {
    title: 'Change Password',
-   destination: 'ChangePassword',
+   destination: 'Introductiond_PswReset',
   },
  ];
 
@@ -60,7 +60,9 @@ function SettingsScreen({ navigation }) {
      {accountSettings.map((section, index) => (
       <View key={`section-${index}`} style={styles.accountContainer_section}>
        <Text style={styles.accountContainer_sectionTitle}>{section.title}</Text>
-       <TouchableOpacity>
+       <TouchableOpacity
+        onPress={() => navigation.navigate(section.destination)}
+       >
         <ArrowIcon_Right />
        </TouchableOpacity>
       </View>

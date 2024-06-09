@@ -8,6 +8,7 @@ import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
 import TermsScreen from '../screens/TermsScreen/TermsScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import IntroductiondPswdScreen from '../screens/ResetPasswordScreen/IntroductionPage';
 
 function Routes() {
  const Stack = createNativeStackNavigator();
@@ -30,13 +31,17 @@ function Routes() {
     screenOptions={{ headerShown: false }}
    >
     <Stack.Screen name="SplashScreen" component={SplashScreen} />
-    <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-    <Stack.Screen name="LoginScreen" component={LoginScreen} />
+    <Stack.Screen name="Register" component={RegisterScreen} />
+    <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Settings" component={SettingsScreen} />
     <Stack.Screen name="Settings_AboutUs" component={AboutUsScreen} />
     <Stack.Screen name="Settings_PrivacyPolicy" component={PrivacyScreen} />
     <Stack.Screen name="Settings_TermsConditions" component={TermsScreen} />
+    <Stack.Screen
+     name="Introductiond_PswReset"
+     component={IntroductiondPswdScreen}
+    />
    </Stack.Navigator>
   </NavigationContainer>
  );
