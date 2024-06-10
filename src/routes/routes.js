@@ -10,6 +10,7 @@ import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import IntroductiondPswdScreen from '../screens/ResetPasswordScreen/IntroductionPage';
 import VerificationPage from '../screens/ResetPasswordScreen/VerificationPage';
+import ConfirmPswdScreen from '../screens/ResetPasswordScreen/ConfirmPage';
 
 function Routes() {
  const Stack = createNativeStackNavigator();
@@ -44,6 +45,7 @@ function Routes() {
      component={IntroductiondPswdScreen}
     />
     <Stack.Screen name="Verification_PswReset" component={VerificationPage} />
+    <Stack.Screen name="Confirm_PswdReset" component={ConfirmPswdScreen} />
    </Stack.Navigator>
   </NavigationContainer>
  );

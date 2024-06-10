@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   justifyContent: 'center',
   paddingHorizontal: 30,
   height: '95%',
+  paddingTop: 30,
  },
  AboutUsScreen_profile: {
   flexDirection: 'column',

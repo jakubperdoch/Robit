@@ -2,6 +2,7 @@ import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ValidationButton from '../../components/ValidationButton/ValidationButton';
 import styles from './styles';
+import GoBackButton from '../../components/GoBackButton/GoBackButton';
 
 function ResetPswdLayout({
  children,
@@ -22,6 +23,8 @@ function ResetPswdLayout({
     justifyContent: 'flex-start',
    }}
   >
+   {/* go back button */}
+   <GoBackButton navigation={navigation} />
    {/* header */}
    <View style={styles.header}>
     <Text style={styles.title}>{title}</Text>

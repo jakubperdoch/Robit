@@ -2,6 +2,7 @@ import { View, Text, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Footer from '../../components/Footer/Footer';
 import styles from './styles';
+import GoBackButton from '../../components/GoBackButton/GoBackButton';
 
 function TermsScreen({ navigation }) {
  const data = [
@@ -13,6 +14,7 @@ function TermsScreen({ navigation }) {
  ];
  return (
   <SafeAreaView style={{ flex: 1 }}>
+   <GoBackButton navigation={navigation} />
    <View style={styles.PrivacyScreen}>
     <Text style={styles.PrivacyScreen_title}>Terms and Conditions</Text>
     <FlatList

@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   padding: 15,
+  paddingTop: 40,
   gap: 20,
  },
  PrivacyScreen_title: {

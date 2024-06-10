@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Footer from '../../components/Footer/Footer';
 import styles from './styles';
+import GoBackButton from '../../components/GoBackButton/GoBackButton';
 
 function AboutUsScreen({ navigation }) {
  const creators = [
@@ -27,6 +28,7 @@ function AboutUsScreen({ navigation }) {
 
  return (
   <SafeAreaView style={{ flex: 1 }}>
+   <GoBackButton navigation={navigation} />
    <View style={styles.AboutUsScreen}>
     {creators.map((creator, index) => (
      <View key={index} style={styles.AboutUsScreen_profile}>

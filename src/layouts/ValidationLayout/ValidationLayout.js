@@ -22,7 +22,6 @@ const ValidationLayout = ({
      <Text style={styles.Layout_title}>{title}</Text>
     </View>
     {children}
-
     <ValidationButton
      hasIcon={true}
      onClickHandler={onClickHandler.bind(this, 'Home')}

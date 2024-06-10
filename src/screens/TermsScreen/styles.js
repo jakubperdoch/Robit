@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   justifyContent: 'flex-start',
   padding: 15,
   gap: 20,
+  paddingTop: 40,
  },
  PrivacyScreen_title: {
   color: '#FFF',

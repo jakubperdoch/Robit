@@ -15,10 +15,6 @@ function RegisterScreen({ navigation }) {
   });
  };
 
- const onClickHandler = (state) => {
-  navigation.navigate('Home');
- };
-
  return (
   <ValidationLayout
    navigation={navigation}

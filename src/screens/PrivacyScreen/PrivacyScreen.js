@@ -2,8 +2,9 @@ import { View, Text, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Footer from '../../components/Footer/Footer';
 import styles from './styles';
+import GoBackButton from '../../components/GoBackButton/GoBackButton';
 
-function PrivacyScreen({navigation}) {
+function PrivacyScreen({ navigation }) {
  const data = [
   {
    id: 1,
@@ -13,6 +14,7 @@ function PrivacyScreen({navigation}) {
  ];
  return (
   <SafeAreaView style={{ flex: 1 }}>
+   <GoBackButton navigation={navigation} />
    <View style={styles.PrivacyScreen}>
     <Text style={styles.PrivacyScreen_title}>Privacy and Policy</Text>
     <FlatList
@@ -24,7 +26,7 @@ function PrivacyScreen({navigation}) {
      keyExtractor={(item) => item.id}
     ></FlatList>
    </View>
-   <Footer navigation={navigation}  />
+   <Footer navigation={navigation} />
   </SafeAreaView>
  );
 }
