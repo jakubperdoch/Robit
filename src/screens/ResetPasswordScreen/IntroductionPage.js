@@ -12,7 +12,7 @@ function IntroductiondPswdScreen({ navigation }) {
    description={
     'Don’t worry ! It happens. Please enter the phone number we will send the OTP in this phone number.'
    }
-   nextDirection={'Password_Verification'}
+   nextDirection={'Verification_PswReset'}
    buttonTitle={'Continue'}
   >
    <View style={styles.ResetPswdScreen_Container}>

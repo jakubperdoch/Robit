@@ -6,12 +6,12 @@ app.use(express.json());
 app.post('/home', (req, res) => {
  const { controller, value } = req.body;
  console.log(`${controller} ${value}`);
-
  res.json({ message: `${controller} ${value}` });
 });
 
-app.get('/nieco', (req, res) => {
- res.send('Hello World!');
+app.post('/', (req, res) => {
+ const { email, password } = req.body;
+ res.json({ message: `Hello ${email}!` });
 });
 
 const PORT = process.env.PORT || 3000;

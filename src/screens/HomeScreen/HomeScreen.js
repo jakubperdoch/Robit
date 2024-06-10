@@ -13,7 +13,7 @@ function HomeScreen({ navigation }) {
 
  const changeGripValue = (newValue) => {
   setGripValue(newValue);
-  axios.post('http://172.20.10.5:3000/home', {
+  axios.post('http://192.168.50.201:3000/home', {
    controller: 'grip',
    value: gripValue,
   });

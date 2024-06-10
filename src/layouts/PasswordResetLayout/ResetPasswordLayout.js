@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ValidationButton from '../../components/ValidationButton/ValidationButton';
+import styles from './styles';
 
 function ResetPswdLayout({
  children,
@@ -17,20 +18,18 @@ function ResetPswdLayout({
  return (
   <SafeAreaView
    style={{
-    flex: 1,
-    height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
    }}
   >
    {/* header */}
-   <View>
-    <Text>{title}</Text>
-    <Text>{description}</Text>
+   <View style={styles.header}>
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.description}>{description}</Text>
    </View>
 
    {/* children slot */}
-   {children}
+   <View style={styles.child}>{children}</View>
 
    {/* footer */}
    <ValidationButton

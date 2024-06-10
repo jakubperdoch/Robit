@@ -9,6 +9,7 @@ import TermsScreen from '../screens/TermsScreen/TermsScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import IntroductiondPswdScreen from '../screens/ResetPasswordScreen/IntroductionPage';
+import VerificationPage from '../screens/ResetPasswordScreen/VerificationPage';
 
 function Routes() {
  const Stack = createNativeStackNavigator();
@@ -42,6 +43,7 @@ function Routes() {
      name="Introductiond_PswReset"
      component={IntroductiondPswdScreen}
     />
+    <Stack.Screen name="Verification_PswReset" component={VerificationPage} />
    </Stack.Navigator>
   </NavigationContainer>
  );

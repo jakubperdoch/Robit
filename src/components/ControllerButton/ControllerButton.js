@@ -13,9 +13,12 @@ function ControllerButton(props) {
   if (isHolding) {
    intervalId = setInterval(() => {
     axios
-     .post('http://172.20.10.5:3000/home', {
+     .post('http://192.168.50.201:3000/home', {
       controller: props.controller,
       value: props.buttonValue,
+     })
+     .then((response) => {
+      console.log(response.data);
      })
      .catch((error) => {
       console.error('There was an error!', error);
