@@ -24,7 +24,7 @@ const styles = (theme = StyleSheet.create({
  home_sectionTitle: {
   fontFamily: 'Tech',
   color: '#fff',
-  fontSize: 21,
+  fontSize: 20,
  },
  home_sectionContainer: {
   alignItems: 'center',

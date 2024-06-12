@@ -21,42 +21,22 @@ function HomeScreen({ navigation }) {
  const controllersArray = [
   {
    title: 'Claw (1)',
-   images: [
-    require('../../assets/images/arrow-left.png'),
-    require('../../assets/images/arrow-right.png'),
-   ],
    controller: 'claw',
   },
   {
    title: 'Hand (2)',
-   images: [
-    require('../../assets/images/arrow-left.png'),
-    require('../../assets/images/arrow-right.png'),
-   ],
    controller: 'hand',
   },
   {
    title: 'Belt (3)',
-   images: [
-    require('../../assets/images/arrow-left.png'),
-    require('../../assets/images/arrow-right.png'),
-   ],
    controller: 'belt',
   },
   {
    title: 'Main (4)',
-   images: [
-    require('../../assets/images/arrow-left.png'),
-    require('../../assets/images/arrow-right.png'),
-   ],
    controller: 'main',
   },
   {
    title: 'Base (5)',
-   images: [
-    require('../../assets/images/arrow-left.png'),
-    require('../../assets/images/arrow-right.png'),
-   ],
    controller: 'base',
   },
  ];
@@ -77,14 +57,16 @@ function HomeScreen({ navigation }) {
        <View key={`section-${index}`} style={styles.home_sectionContainer}>
         <Text style={styles.home_sectionTitle}>{section.title}</Text>
         <View style={styles.home_controllersSection}>
-         {section.images.map((controller, index) => (
-          <ControllerButton
-           key={index}
-           icon={controller}
-           controller={section.controller}
-           buttonValue={index === 0 ? 2 : 1}
-          />
-         ))}
+         <ControllerButton
+          key={`${index}-button2`}
+          controller={section.controller}
+          buttonValue={2}
+         />
+         <ControllerButton
+          key={`${index}-button1`}
+          controller={section.controller}
+          buttonValue={1}
+         />
         </View>
        </View>
       ))}
