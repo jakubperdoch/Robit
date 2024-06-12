@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
+const axios = require('axios');
 
 app.use(express.json());
 
-app.post('/home', (req, res) => {
- const { controller, value } = req.body;
- console.log(`${controller} ${value}`);
- res.json({ message: `${controller} ${value}` });
-});
+
+
 
 app.post('/', (req, res) => {
  const { email, password } = req.body;

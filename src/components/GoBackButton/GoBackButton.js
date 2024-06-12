@@ -2,11 +2,7 @@ import { TouchableOpacity } from 'react-native';
 import { ChevronLeft } from 'lucide-react-native';
 import styles from './styles';
 
-function GoBackButton({ navigation }) {
- const onClickHandler = () => {
-  navigation.goBack();
- };
-
+function GoBackButton({ onClickHandler }) {
  return (
   <TouchableOpacity
    style={styles.goBackButton}

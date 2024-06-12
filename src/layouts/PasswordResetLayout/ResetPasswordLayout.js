@@ -16,6 +16,17 @@ function ResetPswdLayout({
   navigation.navigate(location);
  };
 
+ const onClickBackHandler = () => {
+  navigation.goBack();
+ };
+
+ const onClickLoginHandler = () => {
+  navigation.navigate('Login');
+ };
+
+ const routes = navigation.getState()?.routes;
+ const prevRoute = routes[routes.length - 2];
+
  return (
   <SafeAreaView
    style={{
@@ -24,7 +35,14 @@ function ResetPswdLayout({
    }}
   >
    {/* go back button */}
-   <GoBackButton navigation={navigation} />
+   {prevRoute.name !== 'Login' ? (
+    <GoBackButton onClickHandler={onClickBackHandler} navigation={navigation} />
+   ) : (
+    <GoBackButton
+     onClickHandler={onClickLoginHandler}
+     navigation={navigation}
+    />
+   )}
    {/* header */}
    <View style={styles.header}>
     <Text style={styles.title}>{title}</Text>

@@ -13,7 +13,7 @@ function ControllerButton(props) {
   if (isHolding) {
    intervalId = setInterval(() => {
     axios
-     .post('http://192.168.50.201:3000/home', {
+     .post('http://10.42.0.1:5000/data', {
       controller: props.controller,
       value: props.buttonValue,
      })

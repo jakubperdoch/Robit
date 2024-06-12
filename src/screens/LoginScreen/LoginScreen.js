@@ -14,6 +14,10 @@ function LoginScreen({ navigation }) {
   });
  };
 
+ onClickHandler = () => {
+  navigation.navigate('Introductiond_PswReset');
+ };
+
  return (
   <ValidationLayout
    navigation={navigation}
@@ -38,7 +42,7 @@ function LoginScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
        <Text style={styles.RegisterScreen_link}>Don't have an account?</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => onClickHandler()}>
        <Text style={styles.RegisterScreen_link}>Forgot your password?</Text>
       </TouchableOpacity>
      </View>
