@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles= (theme)= StyleSheet.create({
+const styles = (theme = StyleSheet.create({
  home_title: {
   fontFamily: 'Tech',
   fontSize: 42,
@@ -13,8 +13,8 @@ const styles= (theme)= StyleSheet.create({
   flex: 1,
  },
  home_camera: {
-  width: '90%',
-  height: '23%',
+  width: '85%',
+  height: '20%',
   borderRadius: 10,
  },
  home_controllersSection: {
@@ -45,6 +45,6 @@ const styles= (theme)= StyleSheet.create({
  home_armImage: {
   marginStart: 25,
  },
-});
+}));
 
 export default styles;

@@ -48,13 +48,6 @@ function SettingsScreen({ navigation }) {
      <Text style={styles.header_robotName}>Bobo</Text>
     </View>
 
-    <View style={styles.positionContainer}>
-     <Text style={styles.positionContainer_title}>Original Position</Text>
-     <TouchableOpacity>
-      <PositionIcon width={35} height={35} />
-     </TouchableOpacity>
-    </View>
-
     <View style={styles.accountContainer}>
      <Text style={styles.accountContainer_title}>Account Settings</Text>
      {accountSettings.map((section, index) => (

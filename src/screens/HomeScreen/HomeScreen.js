@@ -4,7 +4,6 @@ import styles from './styles';
 import axios from 'axios';
 import ControllerButton from '../../components/ControllerButton/ControllerButton';
 import { useState } from 'react';
-import GripSlider from '../../components/GripSlider/GripSlider';
 import RoboticArm from '../../assets/images/robotic-arm.svg';
 import Footer from '../../components/Footer/Footer';
 
@@ -21,44 +20,44 @@ function HomeScreen({ navigation }) {
 
  const controllersArray = [
   {
-   title: 'Grip (1)',
+   title: 'Claw (1)',
    images: [
     require('../../assets/images/arrow-left.png'),
     require('../../assets/images/arrow-right.png'),
    ],
-   controller: 'grip',
+   controller: 'claw',
   },
   {
-   title: 'Wrist (2)',
+   title: 'Hand (2)',
    images: [
     require('../../assets/images/arrow-left.png'),
     require('../../assets/images/arrow-right.png'),
    ],
-   controller: 'wrist',
+   controller: 'hand',
   },
   {
-   title: 'Elbow (3)',
+   title: 'Belt (3)',
    images: [
     require('../../assets/images/arrow-left.png'),
     require('../../assets/images/arrow-right.png'),
    ],
-   controller: 'elbow',
+   controller: 'belt',
   },
   {
-   title: 'Shoulder (4)',
+   title: 'Main (4)',
    images: [
     require('../../assets/images/arrow-left.png'),
     require('../../assets/images/arrow-right.png'),
    ],
-   controller: 'shoulder',
+   controller: 'main',
   },
   {
-   title: 'Waist (5)',
+   title: 'Base (5)',
    images: [
     require('../../assets/images/arrow-left.png'),
     require('../../assets/images/arrow-right.png'),
    ],
-   controller: 'waist',
+   controller: 'base',
   },
  ];
  return (
@@ -78,18 +77,14 @@ function HomeScreen({ navigation }) {
        <View key={`section-${index}`} style={styles.home_sectionContainer}>
         <Text style={styles.home_sectionTitle}>{section.title}</Text>
         <View style={styles.home_controllersSection}>
-         {section.controller === 'grip' ? (
-          <GripSlider gripValue={gripValue} changeGripValue={changeGripValue} />
-         ) : (
-          section.images.map((controller, index) => (
-           <ControllerButton
-            key={index}
-            icon={controller}
-            controller={section.controller}
-            buttonValue={index === 0 ? -1 : 1}
-           />
-          ))
-         )}
+         {section.images.map((controller, index) => (
+          <ControllerButton
+           key={index}
+           icon={controller}
+           controller={section.controller}
+           buttonValue={index === 0 ? 2 : 1}
+          />
+         ))}
         </View>
        </View>
       ))}
