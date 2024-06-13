@@ -25,7 +25,7 @@ function ControllerButton({ controller, buttonValue }) {
      .catch((error) => {
       console.error('There was an error!', error);
      });
-   }, 500);
+   }, 250);
   }
 
   return () => {
