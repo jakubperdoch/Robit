@@ -1,21 +1,26 @@
-// Importing required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const app = express();
-const uri =
- 'mongodb+srv://perdochjakub:J8h0vfrsyhsc6QzV@robit.tzpuqox.mongodb.net/Users?retryWrites=true&w=majority';
+const port = process.env.PORT || 3000;
+
+const uri = process.env.MONGODB_URI;
 
 mongoose
- .connect(uri)
- .then((result) => {
-  app.listen(3000);
+ .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+ .then(() => {
+  app.listen(port, () => {
+   console.log(`Server running on port ${port}`);
+  });
  })
  .catch((err) => {
   console.log(err);
  });
+
+app.use(express.json());
 
 const userSchema = new mongoose.Schema({
  username: String,
@@ -25,15 +30,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-app.use(express.json());
-
 const verifyToken = (req, res, next) => {
  const token = req.headers['authorization'];
  if (!token) {
   return res.status(401).json({ error: 'Unauthorized' });
  }
 
- jwt.verify(token, 'secret', (err, decoded) => {
+ jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
   if (err) {
    return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -44,7 +47,6 @@ const verifyToken = (req, res, next) => {
 
 app.post('/api/register', async (req, res) => {
  try {
-  // Check if the email already exists
   const existingUser = await User.findOne({ email: req.body.email });
   if (existingUser) {
    return res.status(400).json({ error: 'Email already exists' });
@@ -77,7 +79,7 @@ app.post('/api/login', async (req, res) => {
    return res.status(401).json({ error: 'Invalid credentials' });
   }
 
-  const token = jwt.sign({ email: user.email }, 'secret');
+  const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
   res.status(200).json({ token });
  } catch (error) {
   res.status(500).json({ error: 'Internal server error' });
@@ -94,4 +96,8 @@ app.get('/api/user', verifyToken, async (req, res) => {
  } catch (error) {
   res.status(500).json({ error: 'Internal server error' });
  }
+});
+
+app.get('/', (req, res) => {
+ res.send('Hello World!');
 });
