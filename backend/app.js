@@ -1,16 +1,17 @@
+// Importing required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000; // Ensure this is the correct port
 
-const uri = process.env.MONGODB_URI;
+const uri =
+ 'mongodb+srv://perdochjakub:J8h0vfrsyhsc6QzV@robit.tzpuqox.mongodb.net/Users?retryWrites=true&w=majority';
 
 mongoose
- .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+ .connect(uri)
  .then(() => {
   app.listen(port, () => {
    console.log(`Server running on port ${port}`);
@@ -20,15 +21,18 @@ mongoose
   console.log(err);
  });
 
-app.use(express.json());
+app.get('/', (req, res) => {
+ res.send('Hello World!');
+});
 
 const userSchema = new mongoose.Schema({
- username: String,
  email: String,
  password: String,
 });
 
 const User = mongoose.model('User', userSchema);
+
+app.use(express.json());
 
 const verifyToken = (req, res, next) => {
  const token = req.headers['authorization'];
@@ -36,7 +40,7 @@ const verifyToken = (req, res, next) => {
   return res.status(401).json({ error: 'Unauthorized' });
  }
 
- jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+ jwt.verify(token, 'secret', (err, decoded) => {
   if (err) {
    return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -47,9 +51,14 @@ const verifyToken = (req, res, next) => {
 
 app.post('/api/register', async (req, res) => {
  try {
+  // Check if the email already exists
   const existingUser = await User.findOne({ email: req.body.email });
   if (existingUser) {
    return res.status(400).json({ error: 'Email already exists' });
+  }
+
+  if (req.body.email === '' || req.body.password === '') {
+   return res.status(400).json({ error: 'Please fill in all fields' });
   }
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -79,7 +88,11 @@ app.post('/api/login', async (req, res) => {
    return res.status(401).json({ error: 'Invalid credentials' });
   }
 
-  const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+  if (req.body.email === '' || req.body.password === '') {
+   return res.status(400).json({ error: 'Please fill in all fields' });
+  }
+
+  const token = jwt.sign({ email: user.email }, 'secret');
   res.status(200).json({ token });
  } catch (error) {
   res.status(500).json({ error: 'Internal server error' });
@@ -97,7 +110,4 @@ app.get('/api/user', verifyToken, async (req, res) => {
   res.status(500).json({ error: 'Internal server error' });
  }
 });
-
-app.get('/', (req, res) => {
- res.send('Hello World!');
-});
+export default app;
