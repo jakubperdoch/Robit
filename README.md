@@ -68,5 +68,6 @@ The Robit app is designed to control a robotic arm through a mobile interface, p
 
 ### Example Screenshot
 
-![Simulator Screenshot - iPhone 15 - 2024-06-17 at 00 52 49](https://github.com/jakubperdoch/Robit/assets/65115839/6c8e967c-2e58-4cb3-8987-305b2261aba1)
+![Screenshot 2024-06-17 at 00 56 55](https://github.com/jakubperdoch/Robit/assets/65115839/eef84872-6e30-4bfc-8a30-bc1b6766f786)
+
 
