@@ -8,12 +8,12 @@ Welcome to the Robit Mobile App, an control interface for a WiFi-controlled robo
 
 ### Purpose
 
-The Robit app is designed to control a robotic arm through a mobile interface, providing a real-time interaction experience. This solution demonstrates the practical application of combining modern mobile technologies with robotic hardware.
+The Robit app is designed to control a robotic arm through a mobile interface, providing a real-time interaction experience. This solution demonstrates the practical application of combining modern mobile technologies with robotic hardware.Featuring user authentication and secure session management using JWT tokens.
 
 ### Technologies
 
 - **React Native Expo**: Provides the framework for the mobile app, ensuring cross-platform compatibility.
-- **Express.js**: Manages backend services, hosted on Vercel.
+- **Express.js**: Manages backend services, user authentication, hosted on Vercel.
 - **MongoDB Atlas**: Stores and manages data in the cloud, ensuring data persistence and security.
 
 ## Environment Setup
