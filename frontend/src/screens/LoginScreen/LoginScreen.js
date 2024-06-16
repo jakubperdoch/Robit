@@ -6,7 +6,6 @@ import TextInput from '../../components/TextInput/TextInput';
 import ValidationLayout from '../../layouts/ValidationLayout/ValidationLayout';
 import axios from 'axios';
 import ValidationButton from '../../components/ValidationButton/ValidationButton';
-import { err } from 'react-native-svg';
 
 function LoginScreen({ navigation }) {
  const [showPassword, setShowPassword] = useState(false);
@@ -33,19 +32,26 @@ function LoginScreen({ navigation }) {
   }
 
   axios
-   .post('http://www.perdochjakub.ninja/api/login', {
+   .post('https://www.perdochjakub.ninja/api/login', {
     email: email,
     password: password,
    })
    .then((response) => {
     navigation.navigate('Home');
+    console.log('nieco sa pojebalo');
    })
    .catch((error) => {
-    console.log(error);
-    setError('Invalid crede');
-    setTimeout(() => {
-     setError('');
-    }, 3000);
+    if (error.response) {
+     setError(error.response.data.error);
+     setTimeout(() => {
+      setError('');
+     }, 3000);
+    } else {
+     setError('Network error, please try again');
+     setTimeout(() => {
+      setError('');
+     }, 3000);
+    }
    });
  };
  return (

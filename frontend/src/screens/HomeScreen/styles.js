@@ -9,8 +9,10 @@ const styles = (theme = StyleSheet.create({
 
  home_screen: {
   alignItems: 'center',
-  gap: 12,
+  justifyContent: 'space-between',
   flex: 1,
+  padding: 30,
+  paddingBottom: 70,
  },
  home_camera: {
   width: '85%',

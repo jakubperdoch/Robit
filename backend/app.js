@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const port = 3000; // Ensure this is the correct port
+const port = 8888; // Ensure this is the correct port
 
 const uri =
  'mongodb+srv://perdochjakub:J8h0vfrsyhsc6QzV@robit.tzpuqox.mongodb.net/Users?retryWrites=true&w=majority';
@@ -21,19 +21,29 @@ mongoose
   console.log(err);
  });
 
-app.get('/', (req, res) => {
- res.send('Hello World!');
-});
+mongoose
+ .connect(uri)
+ .then(() => {
+  console.log('Connected to MongoDB');
+ })
+ .catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+ });
 
+// Define a schema for the User collection
 const userSchema = new mongoose.Schema({
+ username: String,
  email: String,
  password: String,
 });
 
+// Create a User model based on the schema
 const User = mongoose.model('User', userSchema);
 
+// Middleware to parse JSON bodies
 app.use(express.json());
 
+// Middleware for JWT validation
 const verifyToken = (req, res, next) => {
  const token = req.headers['authorization'];
  if (!token) {
@@ -49,20 +59,23 @@ const verifyToken = (req, res, next) => {
  });
 };
 
+// Route to register a new user
 app.post('/api/register', async (req, res) => {
  try {
+
+  if (!req.body.email || !req.body.password) {
+   return res.status(400).json({ error: 'Missing required fields' });
+  }
   // Check if the email already exists
   const existingUser = await User.findOne({ email: req.body.email });
   if (existingUser) {
    return res.status(400).json({ error: 'Email already exists' });
   }
 
-  if (req.body.email === '' || req.body.password === '') {
-   return res.status(400).json({ error: 'Please fill in all fields' });
-  }
-
+  // Hash the password
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
+  // Create a new user
   const newUser = new User({
    username: req.body.username,
    email: req.body.email,
@@ -72,26 +85,27 @@ app.post('/api/register', async (req, res) => {
   await newUser.save();
   res.status(201).json({ message: 'User registered successfully' });
  } catch (error) {
+  console.error(error);
   res.status(500).json({ error: 'Internal server error' });
  }
 });
 
+// Route to authenticate and log in a user
 app.post('/api/login', async (req, res) => {
  try {
+  // Check if the email exists
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
    return res.status(401).json({ error: 'Invalid credentials' });
   }
 
+  // Compare passwords
   const passwordMatch = await bcrypt.compare(req.body.password, user.password);
   if (!passwordMatch) {
    return res.status(401).json({ error: 'Invalid credentials' });
   }
 
-  if (req.body.email === '' || req.body.password === '') {
-   return res.status(400).json({ error: 'Please fill in all fields' });
-  }
-
+  // Generate JWT token
   const token = jwt.sign({ email: user.email }, 'secret');
   res.status(200).json({ token });
  } catch (error) {
@@ -99,8 +113,10 @@ app.post('/api/login', async (req, res) => {
  }
 });
 
+// Protected route to get user details
 app.get('/api/user', verifyToken, async (req, res) => {
  try {
+  // Fetch user details using decoded token
   const user = await User.findOne({ email: req.user.email });
   if (!user) {
    return res.status(404).json({ error: 'User not found' });
@@ -110,4 +126,8 @@ app.get('/api/user', verifyToken, async (req, res) => {
   res.status(500).json({ error: 'Internal server error' });
  }
 });
-export default app;
+
+// Default route
+app.get('/', (req, res) => {
+ res.send('Welcome to my User Registration and Login API!');
+});

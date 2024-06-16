@@ -44,12 +44,6 @@ function HomeScreen({ navigation }) {
   <SafeAreaView style={{ flex: 1 }}>
    <View style={styles.home_screen}>
     <Text style={styles.home_title}>BOBO</Text>
-
-    <Image
-     style={styles.home_camera}
-     source={require('../../assets/images/cameraView.png')}
-    />
-
     <View style={styles.controlSection}>
      <RoboticArm width={220} height={300} style={styles.home_armImage} />
      <View style={styles.home_aside}>

@@ -12,6 +12,7 @@ function RegisterScreen({ navigation }) {
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
  const [error, setError] = useState('');
+
  const handleState = (showHandler) => {
   showHandler((showState) => {
    return !showState;
@@ -19,8 +20,16 @@ function RegisterScreen({ navigation }) {
  };
 
  const onRegisterHandler = () => {
+  if (email === '' || password === '') {
+   setError('Please fill in all fields');
+   setTimeout(() => {
+    setError('');
+   }, 3000);
+   return;
+  }
+
   axios
-   .post('http://www.perdochjakub.ninja/api/register', {
+   .post('https://www.perdochjakub.ninja/api/register', {
     email: email,
     password: password,
    })
@@ -28,14 +37,17 @@ function RegisterScreen({ navigation }) {
     navigation.navigate('Home');
    })
    .catch((error) => {
-    if (email === '' || password === '') {
-     setError('Please fill in all fields');
+    if (error.response) {
+     setError(error.response.data.error);
+     setTimeout(() => {
+      setError('');
+     }, 3000);
     } else {
-     setError('Email already exists');
+     setError('Network error, please try again');
+     setTimeout(() => {
+      setError('');
+     }, 3000);
     }
-    setTimeout(() => {
-     setError('');
-    }, 3000);
    });
  };
 
