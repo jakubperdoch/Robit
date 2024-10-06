@@ -3,116 +3,117 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const app = express();
 const port = 8888;
 
-const uri =
- 'mongodb+srv://perdochjakub:J8h0vfrsyhsc6QzV@robit.tzpuqox.mongodb.net/Users?retryWrites=true&w=majority';
+// Use environment variables for sensitive data
+const uri = process.env.MONGODB_URI;
+const jwtSecret = process.env.JWT_SECRET || 'secret';
 
+// MongoDB connection
 mongoose
- .connect(uri)
- .then(() => {
-  app.listen(port, () => {
-   console.log(`Server running on port ${port}`);
-  });
- })
- .catch((err) => {
-  console.log(err);
- });
+	.connect(uri)
+	.then(() => {
+		console.log('Connected to MongoDB');
+		app.listen(port, () => {
+			console.log(`Server running on port ${port}`);
+		});
+	})
+	.catch((err) => {
+		console.error('Error connecting to MongoDB:', err);
+	});
 
-mongoose
- .connect(uri)
- .then(() => {
-  console.log('Connected to MongoDB');
- })
- .catch((error) => {
-  console.error('Error connecting to MongoDB:', error);
- });
-
+// User schema and model
 const userSchema = new mongoose.Schema({
- username: String,
- email: String,
- password: String,
+	username: { type: String, required: true },
+	email: { type: String, required: true, unique: true },
+	password: { type: String, required: true },
 });
 
 const User = mongoose.model('User', userSchema);
 
 app.use(express.json());
 
+// Middleware for verifying JWT token
 const verifyToken = (req, res, next) => {
- const token = req.headers['authorization'];
- if (!token) {
-  return res.status(401).json({ error: 'Unauthorized' });
- }
+	const token = req.headers['authorization'];
+	if (!token) {
+		return res.status(401).json({ error: 'Unauthorized' });
+	}
 
- jwt.verify(token, 'secret', (err, decoded) => {
-  if (err) {
-   return res.status(401).json({ error: 'Unauthorized' });
-  }
-  req.user = decoded;
-  next();
- });
+	jwt.verify(token, jwtSecret, (err, decoded) => {
+		if (err) {
+			return res.status(401).json({ error: 'Unauthorized' });
+		}
+		req.user = decoded;
+		next();
+	});
 };
 
+// Register endpoint
 app.post('/api/register', async (req, res) => {
- try {
-  if (!req.body.email || !req.body.password) {
-   return res.status(400).json({ error: 'Missing required fields' });
-  }
+	try {
+		const { username, email, password } = req.body;
 
-  const existingUser = await User.findOne({ email: req.body.email });
-  if (existingUser) {
-   return res.status(400).json({ error: 'Email already exists' });
-  }
+		if (!email || !password) {
+			return res.status(400).json({ error: 'Missing required fields' });
+		}
 
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+		const existingUser = await User.findOne({ email });
+		if (existingUser) {
+			return res.status(400).json({ error: 'Email already exists' });
+		}
 
-  const newUser = new User({
-   username: req.body.username,
-   email: req.body.email,
-   password: hashedPassword,
-  });
+		const hashedPassword = await bcrypt.hash(password, 10);
 
-  await newUser.save();
-  res.status(201).json({ message: 'User registered successfully' });
- } catch (error) {
-  console.error(error);
-  res.status(500).json({ error: 'Internal server error' });
- }
+		const newUser = new User({ username, email, password: hashedPassword });
+
+		await newUser.save();
+		res.status(201).json({ message: 'User registered successfully' });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: 'Internal server error' });
+	}
 });
 
+// Login endpoint
 app.post('/api/login', async (req, res) => {
- try {
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-   return res.status(401).json({ error: 'Invalid credentials' });
-  }
+	try {
+		const { email, password } = req.body;
 
-  const passwordMatch = await bcrypt.compare(req.body.password, user.password);
-  if (!passwordMatch) {
-   return res.status(401).json({ error: 'Invalid credentials' });
-  }
+		const user = await User.findOne({ email });
+		if (!user) {
+			return res.status(401).json({ error: 'Invalid credentials' });
+		}
 
-  const token = jwt.sign({ email: user.email }, 'secret');
-  res.status(200).json({ token });
- } catch (error) {
-  res.status(500).json({ error: 'Internal server error' });
- }
+		const passwordMatch = await bcrypt.compare(password, user.password);
+		if (!passwordMatch) {
+			return res.status(401).json({ error: 'Invalid credentials' });
+		}
+
+		const token = jwt.sign({ email: user.email }, jwtSecret, { expiresIn: '1h' });
+		res.status(200).json({ token });
+	} catch (error) {
+		res.status(500).json({ error: 'Internal server error' });
+	}
 });
 
+// Get user info endpoint
 app.get('/api/user', verifyToken, async (req, res) => {
- try {
-  const user = await User.findOne({ email: req.user.email });
-  if (!user) {
-   return res.status(404).json({ error: 'User not found' });
-  }
-  res.status(200).json({ username: user.username, email: user.email });
- } catch (error) {
-  res.status(500).json({ error: 'Internal server error' });
- }
+	try {
+		const user = await User.findOne({ email: req.user.email });
+		if (!user) {
+			return res.status(404).json({ error: 'User not found' });
+		}
+		res.status(200).json({ username: user.username, email: user.email });
+	} catch (error) {
+		res.status(500).json({ error: 'Internal server error' });
+	}
 });
 
+// Home route
 app.get('/', (req, res) => {
- res.send('Welcome to Robit Backend Server!');
+	res.send('Welcome to Robit Backend Server!');
 });
